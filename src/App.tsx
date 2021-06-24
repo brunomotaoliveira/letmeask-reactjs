@@ -24,19 +24,18 @@ function App() {
 
   useEffect(() => {
     auth.onAuthStateChanged(user => {
-      if(user) {
-        if (user) {
-          const { displayName,  photoURL, uid } = user
+      if (user) {
+        const { displayName,  photoURL, uid } = user
 
-          if(!displayName || !photoURL) {
-            throw new Error('Missing information from Google Account.');
-        }
+              if(!displayName || !photoURL) {
+                throw new Error('Missing information from Google Account.');
+            }
 
-        setUser({
-          id: uid,
-          name: displayName,
-          avatar: photoURL
-        })
+            setUser({
+              id: uid,
+              name: displayName,
+              avatar: photoURL
+            })
       }
     })
   }, [])
@@ -60,17 +59,17 @@ function App() {
               avatar: photoURL
             })
           }
-        }
+  }
 
 
   // {{ }} a primeira chave é para dizer que é um codigo JavaScript, a segunda é para dizer que é um objeto.
   return (
     <BrowserRouter>
       <AuthContext.Provider value={{ user, signInWithGoogle }}> /
-      <Route path="/" exact component={Home} />
       <Route path="/rooms/new" component={NewRoom} />
+      <Route path="/" exact component={Home} />
       </AuthContext.Provider>
     </BrowserRouter>
   );
-  
+  }
 export default App;
